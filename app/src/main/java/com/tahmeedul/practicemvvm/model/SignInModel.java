@@ -51,4 +51,6 @@ public class SignInModel implements Serializable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    // complete model
 }
