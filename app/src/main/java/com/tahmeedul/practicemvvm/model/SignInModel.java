@@ -4,28 +4,28 @@ import java.io.Serializable;
 
 public class SignInModel implements Serializable {
 
-    String id;
-    String name;
-    String email;
-    String imageUrl;
-    boolean isAuth;
+    public String uid;
+    public String name;
+    public String email;
+    public String imageUrl;
+    public boolean isAuth;
 
     public SignInModel() {
     }
 
     public SignInModel(String id, String name, String email, String imageUrl) {
-        this.id = id;
+        this.uid = id;
         this.name = name;
         this.email = email;
         this.imageUrl = imageUrl;
     }
 
-    public String getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {
@@ -52,5 +52,4 @@ public class SignInModel implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-    // complete model
 }
