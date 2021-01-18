@@ -1,8 +1,10 @@
-package com.tahmeedul.practicemvvm;
+package com.tahmeedul.practicemvvm.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.tahmeedul.practicemvvm.R;
 
 public class MainActivity extends AppCompatActivity {
 
