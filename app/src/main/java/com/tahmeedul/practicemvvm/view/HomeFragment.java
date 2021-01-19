@@ -10,15 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.tahmeedul.practicemvvm.R;
 
 public class HomeFragment extends Fragment {
 
     private Button logOutButton;
-    private ImageView userImage;
+    private CircularImageView userImage;
     private TextView userName, userEmail;
 
     public HomeFragment() {
@@ -35,5 +35,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        logOutButton = view.findViewById(R.id.logOutButtonId);
+
+        userImage = view.findViewById(R.id.userImageViewId);
+
+        userName = view.findViewById(R.id.userNameId);
+        userEmail = view.findViewById(R.id.userEmailId);
+
+
     }
 }
