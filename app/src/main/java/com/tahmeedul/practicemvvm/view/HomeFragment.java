@@ -1,5 +1,6 @@
 package com.tahmeedul.practicemvvm.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.tahmeedul.practicemvvm.R;
 import com.tahmeedul.practicemvvm.model.SignInModel;
@@ -27,6 +32,10 @@ public class HomeFragment extends Fragment {
     private Button logOutButton;
     private CircularImageView userImage;
     private TextView userName, userEmail;
+
+    // Sign out 0/3
+    private GoogleSignInClient mGoogleSignInClient;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -43,6 +52,8 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Sign out 1/3
+        getGoogleSignIn();
         getUserInfo();
 
         logOutButton = view.findViewById(R.id.logOutButtonId);
@@ -50,7 +61,32 @@ public class HomeFragment extends Fragment {
         userName = view.findViewById(R.id.userNameId);
         userEmail = view.findViewById(R.id.userEmailId);
 
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signOutFromGoogle();
+            }
+        });
 
+    }
+
+    private void getGoogleSignIn() {
+        // Sign out 2/3
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+    }
+
+    private void signOutFromGoogle() {
+        // Sign out 3/3
+        firebaseAuth.signOut();
+        mGoogleSignInClient.signOut();
+        Intent intent = new Intent(getActivity(), SignInActivity.class);
+        startActivity(intent);
+        getActivity().onBackPressed();
     }
 
     private void getUserInfo() {
