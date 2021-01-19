@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
+    <fragment
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="269dp" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         app:labelVisibilityMode="selected"
         app:menu="@menu/bottom_nav"
