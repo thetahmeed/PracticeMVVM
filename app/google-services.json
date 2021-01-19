@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "610743981871-fu9p9r9kh9m678qhq1qhh2jt6005i007.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tahmeedul.practicemvvm",
+            "certificate_hash": "8f1ac1bf315023cd8130ad8ec99d917733cb85c0"
+          }
+        },
+        {
           "client_id": "610743981871-mo07s0g68ktem34am6ft64mrjae59fqj.apps.googleusercontent.com",
           "client_type": 3
         }
