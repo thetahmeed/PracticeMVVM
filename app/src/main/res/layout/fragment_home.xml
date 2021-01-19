@@ -1,13 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.HomeFragment">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/actionBar"
+        android:layout_margin="8dp"
+        android:gravity="center_vertical"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="24sp"
+            android:text="Home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/logOutButtonId"
+            android:background="@drawable/bg_button_round"
+            android:text="Log out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="8dp"
+        android:layout_below="@id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:src="@drawable/ic_baseline_person_24"
+            android:id="@+id/userImageViewId"
+            android:layout_width="65dp"
+            android:layout_height="65dp"/>
+
+        <TextView
+            android:id="@+id/userNameId"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="24sp"
+            android:text="User Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/userEmailId"
+            android:textSize="18sp"
+            android:text="user@email.com"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

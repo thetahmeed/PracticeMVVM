@@ -57,4 +57,7 @@ dependencies {
     // Annotation processor
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
+    // for circular imageView
+    implementation 'com.mikhaellopez:circularimageview:4.2.0'
+
 }
