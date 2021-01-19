@@ -1,13 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:padding="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.InsertFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Insert" />
+        android:id="@+id/theTitle"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:text="@string/add_new_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-</FrameLayout>
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:src="@drawable/ic_baseline_person_24"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/theTitle"
+        android:id="@+id/newImageViewId"
+        android:layout_width="65dp"
+        android:layout_height="65dp"/>
+
+    <EditText
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:id="@+id/newNameId"
+        android:layout_below="@id/newImageViewId"
+        android:hint="@string/name"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:inputType="phone"
+        android:id="@+id/newPhoneId"
+        android:layout_below="@id/newNameId"
+        android:hint="@string/phone"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="8dp"
+        android:id="@+id/newEmailId"
+        android:layout_below="@id/newPhoneId"
+        android:hint="@string/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/newSaveButtonId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newEmailId"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_button_round"
+        android:text="@string/save" />
+
+</RelativeLayout>
