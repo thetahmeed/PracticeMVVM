@@ -1,6 +1,7 @@
 package com.tahmeedul.practicemvvm.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-
+        inSignInViewModel();
         signInButton = findViewById(R.id.signInButtonId);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -30,4 +31,12 @@ public class SignInActivity extends AppCompatActivity {
         });
 
     }
+
+    private void inSignInViewModel() {
+        signInViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
+                .getInstance(this.getApplication()))
+                .get(SignInViewModel.class);
+    }
+
+
 }
