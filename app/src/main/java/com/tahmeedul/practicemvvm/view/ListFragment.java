@@ -26,7 +26,7 @@ import java.util.List;
 
 import dmax.dialog.SpotsDialog;
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements AllContactsAdapter.ClickInterface{
 
     private SearchView searchView;
     private RecyclerView recyclerView;
@@ -53,6 +53,7 @@ public class ListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.contactListRecyclerViewId);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        allContactsAdapter = new AllContactsAdapter(this);
 
         inNewContactViewModel();
         setUpRecycle();
@@ -75,7 +76,6 @@ public class ListFragment extends Fragment {
                 if (newContactModels.size() != 0){
                     // Data found
                     list = newContactModels;
-                    allContactsAdapter = new AllContactsAdapter();
                     allContactsAdapter.getContactList(list);
                     recyclerView.setAdapter(allContactsAdapter);
 
@@ -93,5 +93,15 @@ public class ListFragment extends Fragment {
     private void inNewContactViewModel() {
         newContactsViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
                 .getInstance(getActivity().getApplication())).get(NewContactsViewModel.class);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(getActivity(), ""+position+"Click", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+        Toast.makeText(getActivity(), ""+position+"Long Click", Toast.LENGTH_SHORT).show();
     }
 }

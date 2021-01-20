@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:gravity="center"
+    android:padding="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:drawableLeft="@drawable/ic_baseline_phone_24"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="Details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/singleDp"
+        android:src="@drawable/ic_baseline_person_24"
+        android:layout_marginTop="20dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/singleId"
+        android:text="User Id: 124541"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/singleName"
+        android:text="Name: UserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/singlePhone"
+        android:text="Phone: 01000000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:id="@+id/singleEmail"
+        android:text="Email: example@gmail.com"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
