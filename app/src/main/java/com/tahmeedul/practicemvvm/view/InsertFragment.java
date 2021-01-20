@@ -69,6 +69,7 @@ public class InsertFragment extends Fragment {
 
     }
 
+
     private void uploadImage() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             // We have to take the permission

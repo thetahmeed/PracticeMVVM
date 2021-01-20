@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:padding="8dp"
+<RelativeLayout android:padding="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.InsertFragment">
+    tools:context=".view.InsertFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/theTitle"
@@ -27,39 +27,71 @@
         android:layout_width="65dp"
         android:layout_height="65dp"/>
 
-    <EditText
-        android:inputType="textPersonName"
-        android:layout_width="match_parent"
-        android:layout_marginTop="8dp"
-        android:id="@+id/newNameId"
+    <com.google.android.material.textfield.TextInputLayout
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
         android:layout_below="@id/newImageViewId"
+        android:layout_marginTop="8dp"
+        android:id="@+id/newNameIdHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/name"
-        android:layout_height="wrap_content"/>
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textPersonName"
+            android:id="@+id/newNameId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:inputType="phone"
-        android:id="@+id/newPhoneId"
-        android:layout_below="@id/newNameId"
+    <com.google.android.material.textfield.TextInputLayout
+        app:startIconDrawable="@drawable/ic_baseline_phone_24"
+        android:layout_below="@id/newNameIdHolder"
+        android:layout_marginTop="8dp"
+        android:inputType="textPersonName"
+        android:id="@+id/newPhoneIdHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/phone"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    <EditText
-        android:inputType="textEmailAddress"
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="phone"
+            android:id="@+id/newPhoneId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:startIconDrawable="@drawable/ic_baseline_mail_24"
+        android:layout_below="@id/newPhoneIdHolder"
         android:layout_marginTop="8dp"
-        android:id="@+id/newEmailId"
-        android:layout_below="@id/newPhoneId"
-        android:hint="@string/email"
+        android:inputType="textPersonName"
+        android:id="@+id/newEmailIdHolder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/phone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textEmailAddress"
+            android:id="@+id/newEmailId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/newSaveButtonId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/newEmailId"
+        android:layout_below="@id/newEmailIdHolder"
         android:layout_marginTop="24dp"
         android:background="@drawable/bg_button_round"
         android:text="@string/save" />
