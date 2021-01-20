@@ -59,10 +59,10 @@ public class DetailsDialogue extends DialogFragment {
                 .centerCrop()
                 .placeholder(R.drawable.ic_baseline_person_24)
                 .into(userImage);
-        id.setText(userList.get(position).getNewId());
-        name.setText(userList.get(position).getNewName());
-        phone.setText(userList.get(position).getNewPhone());
-        email.setText(userList.get(position).getNewEmail());
+        id.setText("Id: "+userList.get(position).getNewId());
+        name.setText("Name: "+userList.get(position).getNewName());
+        phone.setText("Phone: "+userList.get(position).getNewPhone());
+        email.setText("Email: "+userList.get(position).getNewEmail());
 
         return builder.create();
     }
