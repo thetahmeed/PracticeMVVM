@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.tahmeedul.practicemvvm.R;
 import com.tahmeedul.practicemvvm.adapter.AllContactsAdapter;
+import com.tahmeedul.practicemvvm.dialogue.DetailsDialogue;
 import com.tahmeedul.practicemvvm.model.NewContactModel;
 import com.tahmeedul.practicemvvm.viewmodel.NewContactsViewModel;
 
@@ -97,7 +98,14 @@ public class ListFragment extends Fragment implements AllContactsAdapter.ClickIn
 
     @Override
     public void onItemClick(int position) {
-        Toast.makeText(getActivity(), ""+position+"Click", Toast.LENGTH_SHORT).show();
+        openDetailsDialogue(position);
+    }
+
+    private void openDetailsDialogue(int position) {
+        DetailsDialogue detailsDialogue = new DetailsDialogue(list, position);
+
+        // getChild because that dialogue is the child on this fragment
+        detailsDialogue.show(getChildFragmentManager(), "Details Dialogue");
     }
 
     @Override
