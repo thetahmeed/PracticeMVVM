@@ -1,5 +1,6 @@
 package com.tahmeedul.practicemvvm.view;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -16,16 +18,22 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.tahmeedul.practicemvvm.R;
+import com.tahmeedul.practicemvvm.adapter.AllContactsAdapter;
 import com.tahmeedul.practicemvvm.model.NewContactModel;
 import com.tahmeedul.practicemvvm.viewmodel.NewContactsViewModel;
 
 import java.util.List;
+
+import dmax.dialog.SpotsDialog;
 
 public class ListFragment extends Fragment {
 
     private SearchView searchView;
     private RecyclerView recyclerView;
     private NewContactsViewModel newContactsViewModel;
+    private AllContactsAdapter allContactsAdapter;
+
+    public List<NewContactModel> list;
 
     public ListFragment() {
         // Required empty public constructor
@@ -43,6 +51,8 @@ public class ListFragment extends Fragment {
 
         searchView = view.findViewById(R.id.searchContactListId);
         recyclerView = view.findViewById(R.id.contactListRecyclerViewId);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         inNewContactViewModel();
         setUpRecycle();
@@ -50,14 +60,30 @@ public class ListFragment extends Fragment {
     }
 
     private void setUpRecycle() {
+        // Showing the dialogue
+        AlertDialog dialog = new SpotsDialog.Builder()
+                .setContext(getActivity())
+                .setTheme(R.style.Custom)
+                .setCancelable(false)
+                .build();
+        dialog.show();
+
         newContactsViewModel.getData();
         newContactsViewModel.allContacts.observe(getViewLifecycleOwner(), new Observer<List<NewContactModel>>() {
             @Override
             public void onChanged(List<NewContactModel> newContactModels) {
                 if (newContactModels.size() != 0){
-                    String name = newContactModels.get(0).getNewName();
-                    Toast.makeText(getActivity(), ""+name, Toast.LENGTH_SHORT).show();
+                    // Data found
+                    list = newContactModels;
+                    allContactsAdapter = new AllContactsAdapter();
+                    allContactsAdapter.getContactList(list);
+                    recyclerView.setAdapter(allContactsAdapter);
+
+                    dialog.dismiss();
+
                 }else {
+                    // No data found
+                    dialog.dismiss();
                     Toast.makeText(getActivity(), "No contacts found", Toast.LENGTH_SHORT).show();
                 }
             }
