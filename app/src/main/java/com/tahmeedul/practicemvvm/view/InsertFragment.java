@@ -1,6 +1,7 @@
 package com.tahmeedul.practicemvvm.view;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -12,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -24,17 +27,23 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.tahmeedul.practicemvvm.R;
+import com.tahmeedul.practicemvvm.model.NewContactModel;
+import com.tahmeedul.practicemvvm.viewmodel.NewContactsViewModel;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.Random;
+
+import dmax.dialog.SpotsDialog;
 
 public class InsertFragment extends Fragment {
 
     CircularImageView newImage;
     EditText newName, newPhone, newEmail;
     Button newButton;
-    Uri selectedImageUri;
+    Uri selectedImageUri = null;
+
+    private NewContactsViewModel newContactsViewModel;
 
     public InsertFragment() {
         // Required empty public constructor
@@ -50,6 +59,8 @@ public class InsertFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        inNewContactViewModel();
 
         newImage = view.findViewById(R.id.newImageViewId);
         newName = view.findViewById(R.id.newNameId);
@@ -91,12 +102,44 @@ public class InsertFragment extends Fragment {
                         email = "Email not found";
                     }
 
-                    Toast.makeText(getActivity(), "Saving...", Toast.LENGTH_SHORT).show();
+                    // Showing  Spot Dialogue
+                    AlertDialog dialog = new SpotsDialog.Builder()
+                            .setContext(getActivity())
+                            .setTheme(R.style.Custom)
+                            .setCancelable(false)
+                            .build();
+
+                    dialog.show();
+
+                    // Saving data
+                    NewContactModel newContactModel = new NewContactModel(id, name, phone, email, "image_url");
+
+                    newContactsViewModel.insertData(newContactModel, selectedImageUri);
+                    newContactsViewModel.liveData.observe(getViewLifecycleOwner(), new Observer<String>() {
+                        @Override
+                        // s = 'Data insert successfully' or 'e'
+                        public void onChanged(String s) {
+                            dialog.dismiss();
+                            Snackbar.make(view, "Saved", Snackbar.LENGTH_LONG).show();
+                            // Keeping everything blank
+                            newImage.setImageResource(R.drawable.ic_baseline_person_24);
+                            newName.setText("");
+                            newPhone.setText("");
+                            newEmail.setText("");
+                        }
+                    });
+
+
                 }
 
             }
         });
 
+    }
+
+    private void inNewContactViewModel() {
+        newContactsViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
+                .getInstance(getActivity().getApplication())).get(NewContactsViewModel.class);
     }
 
     private String randomDigit() {
