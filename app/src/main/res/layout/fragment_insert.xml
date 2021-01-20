@@ -75,7 +75,7 @@
         android:id="@+id/newEmailIdHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/phone"
+        android:hint="@string/email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText

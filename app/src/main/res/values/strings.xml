@@ -7,6 +7,6 @@
     <string name="name">Name</string>
     <string name="add_new_contact">Add new contact</string>
     <string name="phone">Phone</string>
-    <string name="email">Email</string>
+    <string name="email">Email (Optional)</string>
     <string name="save">Save</string>
 </resources>

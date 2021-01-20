@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,30 @@ public class InsertFragment extends Fragment {
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String id = randomDigit();
+                String name = newName.getText().toString().trim();
+                String phone = newPhone.getText().toString().trim().replace(" ", "");
+                String email = newEmail.getText().toString().trim().replaceAll(" ", "");
+
+                if (name.isEmpty()){
+                    newName.setError("This field can't be empty");
+                    newName.requestFocus();
+                }else if (phone.isEmpty()){
+                    newPhone.setError("This field can't be empty");
+                    newPhone.requestFocus();
+                }else if (phone.length() != 11) {
+                    newPhone.setError("Phone number is not valid");
+                    newPhone.requestFocus();
+                }else if (!email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    newEmail.setError("Email is not valid");
+                    newEmail.requestFocus();
+                }else {
+                    if (email.isEmpty()){
+                        email = "Email not found";
+                    }
+
+                    Toast.makeText(getActivity(), "Saving...", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
