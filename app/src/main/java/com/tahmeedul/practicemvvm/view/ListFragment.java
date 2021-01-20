@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import java.util.List;
 
 public class ListFragment extends Fragment {
 
+    private SearchView searchView;
+    private RecyclerView recyclerView;
     private NewContactsViewModel newContactsViewModel;
 
     public ListFragment() {
@@ -36,9 +40,12 @@ public class ListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        searchView = view.findViewById(R.id.searchContactListId);
+        recyclerView = view.findViewById(R.id.contactListRecyclerViewId);
+
         inNewContactViewModel();
         setUpRecycle();
-
 
     }
 
