@@ -10,10 +10,13 @@ import androidx.lifecycle.LiveData;
 import com.tahmeedul.practicemvvm.model.NewContactModel;
 import com.tahmeedul.practicemvvm.repository.NewContactRepository;
 
+import java.util.List;
+
 public class NewContactsViewModel extends AndroidViewModel {
 
     private NewContactRepository repository;
     public LiveData<String> liveData;
+    public LiveData<List<NewContactModel>> allContacts;
 
     public NewContactsViewModel(@NonNull Application application) {
         super(application);
@@ -24,6 +27,10 @@ public class NewContactsViewModel extends AndroidViewModel {
 
     public void insertData(NewContactModel newContactModel, Uri imageUri){
         liveData = repository.insertContactFireStore(newContactModel, imageUri);
+    }
+
+    public void getData(){
+        allContacts = repository.gettingContactsList();
     }
 
 }
