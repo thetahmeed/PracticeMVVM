@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.tahmeedul.practicemvvm.R;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -83,7 +84,9 @@ public class InsertFragment extends Fragment {
                 }else if (!email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     newEmail.setError("Email is not valid");
                     newEmail.requestFocus();
-                }else {
+                }else if (selectedImageUri == null){
+                    Snackbar.make(view, "Please select an image", Snackbar.LENGTH_LONG).show();
+                } else {
                     if (email.isEmpty()){
                         email = "Email not found";
                     }
