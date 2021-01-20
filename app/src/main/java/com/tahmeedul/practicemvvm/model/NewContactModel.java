@@ -2,7 +2,7 @@ package com.tahmeedul.practicemvvm.model;
 
 public class NewContactModel {
 
-    String newId, newName, newPhone, newEmail, newImage;
+    public String newId, newName, newPhone, newEmail, newImage;
 
     public NewContactModel() {
 
