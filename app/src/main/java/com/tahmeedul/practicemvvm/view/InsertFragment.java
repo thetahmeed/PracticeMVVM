@@ -25,6 +25,8 @@ import com.tahmeedul.practicemvvm.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.util.Random;
+
 public class InsertFragment extends Fragment {
 
     CircularImageView newImage;
@@ -67,6 +69,18 @@ public class InsertFragment extends Fragment {
             }
         });
 
+    }
+
+    private String randomDigit() {
+        char[] chars= "1234567890".toCharArray();
+        StringBuilder stringBuilder= new StringBuilder();
+        Random random= new Random();
+        // 5 digit random number
+        for(int i=0;i<5;i++){
+            char c= chars[random.nextInt(chars.length)];
+            stringBuilder.append(c);
+        }
+        return stringBuilder.toString();
     }
 
 
