@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.tahmeedul.practicemvvm.model.NewContactModel;
+import com.tahmeedul.practicemvvm.model.UpdateContactModel;
 import com.tahmeedul.practicemvvm.repository.NewContactRepository;
 
 import java.util.List;
@@ -41,4 +42,7 @@ public class NewContactsViewModel extends AndroidViewModel {
         repository.updateImageRepository(id, uri);
     }
 
+    public void updateData(UpdateContactModel updatedData){
+        repository.updateInfoRepository(updatedData);
+    }
 }
