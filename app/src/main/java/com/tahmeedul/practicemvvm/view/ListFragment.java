@@ -1,6 +1,7 @@
 package com.tahmeedul.practicemvvm.view;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -110,6 +111,18 @@ public class ListFragment extends Fragment implements AllContactsAdapter.ClickIn
 
     @Override
     public void onItemLongClick(int position) {
-        Toast.makeText(getActivity(), ""+position+"Long Click", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        String [] options = {"Update", "Delete"};
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0){
+                    Toast.makeText(getActivity(), "update", Toast.LENGTH_SHORT).show();
+                }else if (i == 1){
+
+                }
+            }
+        }).create().show();
+
     }
 }
