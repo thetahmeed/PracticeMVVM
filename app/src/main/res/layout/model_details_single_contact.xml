@@ -19,7 +19,6 @@
         android:textSize="20sp"
         android:textColor="@android:color/holo_blue_dark"
         android:id="@+id/singleId"
-        android:text="User Id: 124541"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -28,7 +27,6 @@
         android:textSize="20sp"
         android:textColor="@android:color/holo_blue_dark"
         android:id="@+id/singleName"
-        android:text="Name: UserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -37,7 +35,6 @@
         android:textSize="20sp"
         android:textColor="@android:color/holo_blue_dark"
         android:id="@+id/singlePhone"
-        android:text="Phone: 01000000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -47,7 +44,6 @@
         android:textSize="20sp"
         android:textColor="@android:color/holo_blue_dark"
         android:id="@+id/singleEmail"
-        android:text="Email: example@gmail.com"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

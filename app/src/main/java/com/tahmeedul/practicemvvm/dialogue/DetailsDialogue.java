@@ -62,7 +62,9 @@ public class DetailsDialogue extends DialogFragment {
         id.setText("Id: "+userList.get(position).getNewId());
         name.setText("Name: "+userList.get(position).getNewName());
         phone.setText("Phone: "+userList.get(position).getNewPhone());
-        email.setText("Email: "+userList.get(position).getNewEmail());
+        if (userList.get(position).getNewEmail().contains("@")){
+            email.setText("Email: "+userList.get(position).getNewEmail());
+        }
 
         return builder.create();
     }

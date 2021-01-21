@@ -10,8 +10,8 @@
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/updateImage"
         android:src="@drawable/ic_baseline_person_24"
-        android:layout_width="65dp"
-        android:layout_height="65dp"/>
+        android:layout_width="120dp"
+        android:layout_height="120dp"/>
 
     <Button
         android:id="@+id/updateImageButtonId"
