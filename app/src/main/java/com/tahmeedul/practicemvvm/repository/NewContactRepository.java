@@ -144,4 +144,32 @@ public class NewContactRepository {
         }); // delete image
     }
 
+    // Update image
+    public void updateImageRepository(String id, Uri uri){
+        String uid = firebaseAuth.getCurrentUser().getUid();
+
+        StorageReference updateImage = storageReference.child("profile_pictures").child(uid).child(id+".jpg");
+
+        // updating image
+        updateImage.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // updating Image url
+                updateImage.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        firebaseFirestore.collection("User").document(uid)
+                                .collection("ContactsList").document(id).update("image", uri.toString())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        // Image Update complete
+                                    }
+                                }); // we can add failure listener here
+                    }
+                }); // we can add failure listener here
+            }
+        }); // we can add failure listener here
+    }
+
 }

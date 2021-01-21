@@ -117,7 +117,7 @@ public class ListFragment extends Fragment implements AllContactsAdapter.ClickIn
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (i == 0){
-                    Toast.makeText(getActivity(), "update", Toast.LENGTH_SHORT).show();
+                    updateData(position);
                 }else if (i == 1){
                     // delete the image and data
                     newContactsViewModel.deleteDataViewModel(list.get(position).getNewId());
@@ -129,6 +129,10 @@ public class ListFragment extends Fragment implements AllContactsAdapter.ClickIn
                 }
             }
         }).create().show();
+
+    }
+
+    private void updateData(int position) {
 
     }
 }
