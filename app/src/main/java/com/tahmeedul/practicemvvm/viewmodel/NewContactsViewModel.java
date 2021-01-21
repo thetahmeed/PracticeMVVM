@@ -33,4 +33,8 @@ public class NewContactsViewModel extends AndroidViewModel {
         allContacts = repository.gettingContactsList();
     }
 
+    public void deleteDataViewModel (String id){
+        repository.deleteDataRepository(id);
+    }
+
 }

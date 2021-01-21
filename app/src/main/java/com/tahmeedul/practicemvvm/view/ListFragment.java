@@ -119,7 +119,13 @@ public class ListFragment extends Fragment implements AllContactsAdapter.ClickIn
                 if (i == 0){
                     Toast.makeText(getActivity(), "update", Toast.LENGTH_SHORT).show();
                 }else if (i == 1){
-
+                    // delete the image and data
+                    newContactsViewModel.deleteDataViewModel(list.get(position).getNewId());
+                    Toast.makeText(getActivity(), "Deleted",
+                            Toast.LENGTH_SHORT).show();
+                    // update the list
+                    list.remove(position);
+                    allContactsAdapter.notifyItemRemoved(position);
                 }
             }
         }).create().show();

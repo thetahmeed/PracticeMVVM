@@ -125,4 +125,23 @@ public class NewContactRepository {
         return allSavedContacts;
     }
 
+    // Delete data
+    public void deleteDataRepository(String id){
+        String uid = firebaseAuth.getCurrentUser().getUid();
+
+        StorageReference deleteImage = storageReference.child("profile_pictures").child(uid).child(id+".jpg");
+        deleteImage.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                firebaseFirestore.collection("User").document(uid)
+                        .collection("ContactsList").document(id).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                }); // delete info
+            }
+        }); // delete image
+    }
+
 }
