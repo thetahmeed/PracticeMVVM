@@ -18,6 +18,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.tahmeedul.practicemvvm.model.NewContactModel;
+import com.tahmeedul.practicemvvm.model.UpdateContactModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,11 +67,11 @@ public class NewContactRepository {
                                         insertResultLiveData.setValue("Insert successfully");
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        insertResultLiveData.setValue(e.toString());
-                                     }
-                                });
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                insertResultLiveData.setValue(e.toString());
+                            }
+                        });
                     }
                 });
             }
@@ -86,7 +87,7 @@ public class NewContactRepository {
     }
 
     // Getting data
-    public MutableLiveData<List<NewContactModel>> gettingContactsList(){
+    public MutableLiveData<List<NewContactModel>> gettingContactsList() {
         MutableLiveData<List<NewContactModel>> allSavedContacts = new MutableLiveData<>();
 
         String uid = firebaseAuth.getCurrentUser().getUid();
@@ -99,7 +100,7 @@ public class NewContactRepository {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 contactsList.clear();   // Clear the previous contact list
 
-                for (DocumentSnapshot documentSnapshot : task.getResult()){
+                for (DocumentSnapshot documentSnapshot : task.getResult()) {
                     String id = documentSnapshot.getString("id");
                     String name = documentSnapshot.getString("name");
                     String phone = documentSnapshot.getString("phone");
@@ -126,10 +127,10 @@ public class NewContactRepository {
     }
 
     // Delete data
-    public void deleteDataRepository(String id){
+    public void deleteDataRepository(String id) {
         String uid = firebaseAuth.getCurrentUser().getUid();
 
-        StorageReference deleteImage = storageReference.child("profile_pictures").child(uid).child(id+".jpg");
+        StorageReference deleteImage = storageReference.child("profile_pictures").child(uid).child(id + ".jpg");
         deleteImage.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -145,10 +146,10 @@ public class NewContactRepository {
     }
 
     // Update image
-    public void updateImageRepository(String id, Uri uri){
+    public void updateImageRepository(String id, Uri uri) {
         String uid = firebaseAuth.getCurrentUser().getUid();
 
-        StorageReference updateImage = storageReference.child("profile_pictures").child(uid).child(id+".jpg");
+        StorageReference updateImage = storageReference.child("profile_pictures").child(uid).child(id + ".jpg");
 
         // updating image
         updateImage.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -170,6 +171,26 @@ public class NewContactRepository {
                 }); // we can add failure listener here
             }
         }); // we can add failure listener here
+    }
+
+    // Update info
+    public void updateInfoRepository(UpdateContactModel updatedData) {
+        String uid = firebaseAuth.getCurrentUser().getUid();
+
+        firebaseFirestore.collection("User").document(uid)
+                .collection("ContactsList").document(updatedData.getId())
+                .update("name", updatedData.getName(), "phone", updatedData.getPhone(), "email", updatedData.getEmail())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Data updated
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Update error
+            }
+        });
     }
 
 }
