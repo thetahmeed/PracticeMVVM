@@ -37,4 +37,8 @@ public class NewContactsViewModel extends AndroidViewModel {
         repository.deleteDataRepository(id);
     }
 
+    public void updateImageViewModel(String id, Uri uri){
+        repository.updateImageRepository(id, uri);
+    }
+
 }
