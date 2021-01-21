@@ -1,4 +1,4 @@
 # PracticeMVVM
-// a android project with MVVM Arc.
+// an android project with MVVM Arc.
 
 ## MODEL > REPOSITORY > VIEWMODEL > VIEW
