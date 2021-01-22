@@ -75,6 +75,41 @@ public class ListFragment extends Fragment implements AllContactsAdapter.ClickIn
         inNewContactViewModel();
         setUpRecycle();
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                getResult(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
+
+    private void getResult(String query) {
+        AlertDialog dialog = new SpotsDialog.Builder()
+                .setContext(getActivity())
+                .setTheme(R.style.Custom)
+                .setCancelable(false)
+                .build();
+        dialog.show();
+
+        newContactsViewModel.searchDataViewModel(query);
+        newContactsViewModel.searchLiveData.observe(getViewLifecycleOwner(), new Observer<List<NewContactModel>>() {
+            @Override
+            public void onChanged(List<NewContactModel> resultList) {
+                list = resultList;
+                allContactsAdapter.getContactList(resultList);
+                recyclerView.setAdapter(allContactsAdapter);
+                dialog.dismiss();
+                if (list.size() == 0){
+                    Toast.makeText(getActivity(), "No result found", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void setUpRecycle() {
