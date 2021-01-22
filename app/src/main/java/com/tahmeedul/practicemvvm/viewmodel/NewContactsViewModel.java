@@ -18,6 +18,7 @@ public class NewContactsViewModel extends AndroidViewModel {
     private NewContactRepository repository;
     public LiveData<String> liveData;
     public LiveData<List<NewContactModel>> allContacts;
+    public LiveData<List<NewContactModel>> searchLiveData;
 
     public NewContactsViewModel(@NonNull Application application) {
         super(application);
@@ -44,5 +45,9 @@ public class NewContactsViewModel extends AndroidViewModel {
 
     public void updateData(UpdateContactModel updatedData){
         repository.updateInfoRepository(updatedData);
+    }
+
+    public void searchDataViewModel (String keyword){
+        searchLiveData = repository.searchDataRepository(keyword);
     }
 }
