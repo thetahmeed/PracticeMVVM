@@ -193,4 +193,38 @@ public class NewContactRepository {
         });
     }
 
+    // Search data
+    public MutableLiveData<List<NewContactModel>> searchDataRepository(String keyword) {
+        MutableLiveData<List<NewContactModel>> searchContact = new MutableLiveData<>();
+
+        String uid = firebaseAuth.getCurrentUser().getUid();
+        List<NewContactModel> searchResult = new ArrayList<>();
+
+        firebaseFirestore.collection("User").document(uid)
+                .collection("ContactsList").whereEqualTo("name", keyword).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                            String id = documentSnapshot.getString("id");
+                            String name = documentSnapshot.getString("name");
+                            String phone = documentSnapshot.getString("phone");
+                            String email = documentSnapshot.getString("email");
+                            String image = documentSnapshot.getString("image");
+
+                            NewContactModel newContactModel = new NewContactModel(id, name, phone, email, image);
+                            searchResult.add(newContactModel);
+                        }
+                        searchContact.setValue(searchResult);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Search failed
+            }
+        });
+
+        return searchContact;
+    }
+
 }
